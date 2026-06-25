@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xi Chen - Robotics & AI Researcher</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #fafaf9;
+            --bg-secondary: #f5f5f4;
+            --text-primary: #1c1917;
+            --text-secondary: #57534e;
+            --text-muted: #a8a29e;
+            --accent: #0c4a6e;
+            --accent-light: #e0f2fe;
+            --border: #e7e5e4;
+            --border-light: #f5f5f4;
+            --radius: 8px;
+            --shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.02);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.04), 0 2px 4px -2px rgba(0,0,0,0.02);
+            --max-width: 800px;
+            --section-gap: 80px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-size: 15px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(250, 250, 249, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-light);
+            transition: box-shadow 0.3s ease;
+        }
+
+        nav.scrolled { box-shadow: var(--shadow-md); }
+
+        .nav-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 56px;
+        }
+
+        .nav-logo {
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: -0.3px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+            position: relative;
+        }
+
+        .nav-links a:hover { color: var(--accent); }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0;
+            width: 0; height: 2px;
+            background: var(--accent);
+            transition: width 0.2s;
+            border-radius: 1px;
+        }
+
+        .nav-links a:hover::after { width: 100%; }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        /* Main container */
+        main {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 100px 24px 80px;
+        }
+
+        /* Section styles */
+        section {
+            margin-bottom: var(--section-gap);
+            scroll-margin-top: 80px;
+        }
+
+        section:last-child { margin-bottom: 0; }
+
+        h2 {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 32px;
+            letter-spacing: -0.5px;
+        }
+
+        h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 32px 0 12px;
+            letter-spacing: -0.3px;
+        }
+
+        h3:first-child { margin-top: 0; }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        p:last-child { margin-bottom: 0; }
+
+        /* About / Hero */
+        .hero {
+            margin-bottom: 60px;
+        }
+
+        .hero-name {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 42px;
+            font-weight: 600;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .hero-role {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .hero-contact {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 20px;
+            margin-bottom: 28px;
+            font-size: 14px;
+        }
+
+        .hero-contact a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.2s;
+        }
+
+        .hero-contact a:hover { opacity: 0.7; text-decoration: underline; }
+
+        .hero-contact .divider {
+            color: var(--text-muted);
+        }
+
+        .hero-bio {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        .hero-bio p { margin-bottom: 16px; }
+
+        .hero-bio strong { color: var(--text-primary); font-weight: 600; }
+
+        /* Cards */
+        .card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            margin-bottom: 16px;
+            transition: box-shadow 0.2s, border-color 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-md);
+            border-color: #d6d3d1;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+            gap: 16px;
+        }
+
+        .card-title {
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--text-primary);
+            line-height: 1.5;
+        }
+
+        .card-meta {
+            font-size: 13px;
+            color: var(--text-muted);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .card-org {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .card-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .card-desc ul {
+            padding-left: 18px;
+            margin: 0;
+        }
+
+        .card-desc li {
+            margin-bottom: 6px;
+        }
+
+        .card-desc li:last-child { margin-bottom: 0; }
+
+        /* Publication list */
+        .pub-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .pub-item {
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .pub-item:last-child { border-bottom: none; }
+
+        .pub-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+            line-height: 1.5;
+        }
+
+        .pub-authors {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+
+        .pub-venue {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .pub-venue strong {
+            font-style: normal;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .pub-note {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* News */
+        .news-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .news-item {
+            display: flex;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .news-item:last-child { border-bottom: none; }
+
+        .news-year {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--accent);
+            min-width: 48px;
+            flex-shrink: 0;
+        }
+
+        .news-text {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Two column for experience */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        @media (max-width: 640px) {
+            .two-col { grid-template-columns: 1fr; }
+        }
+
+        /* Tag / Badge */
+        .tag {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 500;
+            padding: 3px 10px;
+            border-radius: 100px;
+            background: var(--accent-light);
+            color: var(--accent);
+            margin-right: 6px;
+            margin-bottom: 6px;
+        }
+
+        /* Divider */
+        .section-divider {
+            height: 1px;
+            background: var(--border);
+            margin: 60px 0;
+            border: none;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 24px;
+            color: var(--text-muted);
+            font-size: 13px;
+            border-top: 1px solid var(--border-light);
+        }
+
+        /* Mobile */
+        @media (max-width: 640px) {
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
+            .hero-name { font-size: 32px; }
+            .hero-role { font-size: 16px; }
+            main { padding: 80px 20px 60px; }
+            h2 { font-size: 24px; }
+        }
+
+        /* Smooth fade in */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        section {
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+        }
+
+        section:nth-child(1) { animation-delay: 0.1s; }
+        section:nth-child(2) { animation-delay: 0.2s; }
+        section:nth-child(3) { animation-delay: 0.3s; }
+        section:nth-child(4) { animation-delay: 0.4s; }
+        section:nth-child(5) { animation-delay: 0.5s; }
+        section:nth-child(6) { animation-delay: 0.6s; }
+        section:nth-child(7) { animation-delay: 0.7s; }
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">Xi Chen</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#research">Research</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#teaching">Teaching</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <!-- About / Hero -->
+        <section id="about" class="hero">
+            <h1 class="hero-name">Xi Chen</h1>
+            <p class="hero-role">Researcher in Robotics and Embodied AI</p>
+            <div class="hero-contact">
+                <a href="mailto:pcchenxi@gmail.com">pcchenxi@gmail.com</a>
+                <span class="divider">|</span>
+                <a href="https://scholar.google.com/citations?user=YOUR_ID" target="_blank">Google Scholar</a>
+                <span class="divider">|</span>
+                <span>Phone: +86 135 1081 0137</span>
+            </div>
+            <div class="hero-bio">
+                <p>My research focuses on building <strong>intelligent robotic systems</strong> that can generalize across embodiments, tasks, and real-world environments.</p>
+                <p>To this end, I work at the intersection of <strong>embodied AI, robot learning, and multi-robot systems</strong>, developing data-driven methods for cross-robot adaptation, robust policy learning from heterogeneous data, and coordination in heterogeneous multi-robot systems.</p>
+                <p>My long-term goal is to enable <strong>transferable and deployable robot intelligence</strong> that can learn from collective experience, share knowledge across heterogeneous robots, and operate reliably in complex real-world settings.</p>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- News -->
+        <section id="news">
+            <h2>News</h2>
+            <ul class="news-list">
+                <li class="news-item">
+                    <span class="news-year">2026</span>
+                    <span class="news-text">Our paper on cross-robot behavior adaptation was published in <strong>Science Robotics</strong>. The work introduces intention-aligned imitation learning for heterogeneous robots.</span>
+                </li>
+                <li class="news-item">
+                    <span class="news-year">2024</span>
+                    <span class="news-text">Joined <strong>Beijing Institute for General Artificial Intelligence (BIGAI)</strong> as a Researcher, leading the Robotics Lab.</span>
+                </li>
+                <li class="news-item">
+                    <span class="news-year">2021</span>
+                    <span class="news-text">Completed postdoctoral research at <strong>Tsinghua University</strong> and began as Visiting Scholar at AIRS and Researcher at Tencent IEG.</span>
+                </li>
+            </ul>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- Research / Publications -->
+        <section id="research">
+            <h2>Selected Publications</h2>
+            <p style="margin-bottom: 24px; font-size: 14px; color: var(--text-muted);">* Equal first author. &dagger; Equal corresponding author. <a href="https://scholar.google.com" target="_blank" style="color: var(--accent);">Full list on Google Scholar &rarr;</a></p>
+            <ul class="pub-list">
+                <li class="pub-item">
+                    <div class="pub-title">Cross-robot Behavior Adaptation Through Intention Alignment</div>
+                    <div class="pub-authors">Chen, X.*&dagger;, Gao, Y.*, Liu, H., Yang, F., et al.</div>
+                    <div class="pub-venue"><strong>Science Robotics</strong>, 11(112): eadv2250, 2026</div>
+                    <div class="pub-note">A cross-robot imitation learning framework transferring behaviors through shared high-level intention representations.</div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-title">LAPO: Latent-Variable Advantage-Weighted Policy Optimization for Offline Reinforcement Learning</div>
+                    <div class="pub-authors">Chen, X., Ghadirzadeh, A., Yu, T., Wang, J., et al.</div>
+                    <div class="pub-venue"><strong>NeurIPS</strong>, 2022</div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-title">Asymmetric Self-Play-Enabled Intelligent Heterogeneous Multirobot Catching System Using Deep Multiagent Reinforcement Learning</div>
+                    <div class="pub-authors">Gao, Y., Chen, J., Chen, X., Wang, C., et al.</div>
+                    <div class="pub-venue"><strong>IEEE Transactions on Robotics (T-RO)</strong>, 2023</div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-title">Adversarial Feature Training for Generalizable Robotic Visuomotor Control</div>
+                    <div class="pub-authors">Chen, X., Ghadirzadeh, A., Bj&ouml;rkman, M., &amp; Jensfelt, P.</div>
+                    <div class="pub-venue"><strong>ICRA</strong>, 2020</div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-title">Bayesian Meta-Learning for Few-Shot Policy Adaptation Across Robotic Platforms</div>
+                    <div class="pub-authors">Ghadirzadeh, A.*, Chen, X.*, Poklukar, P., Finn, C., et al.</div>
+                    <div class="pub-venue"><strong>IROS</strong>, 2021</div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-title">Human-Centered Collaborative Robots with Deep Reinforcement Learning</div>
+                    <div class="pub-authors">Ghadirzadeh, A.*, Chen, X.*, Yin, W., Yi, Z., et al.</div>
+                    <div class="pub-venue"><strong>IEEE Robotics and Automation Letters (RA-L)</strong>, 2020</div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-title">Meta-Learning for Multi-Objective Reinforcement Learning</div>
+                    <div class="pub-authors">Chen, X., Ghadirzadeh, A., Bj&ouml;rkman, M., &amp; Jensfelt, P.</div>
+                    <div class="pub-venue"><strong>IROS</strong>, 2019</div>
+                </li>
+            </ul>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- Research Projects -->
+        <section id="projects">
+            <h2>Selected Research Projects</h2>
+            
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Intelligent Airport Security Inspection System</span>
+                    <span class="card-meta">2024 &ndash; 2026</span>
+                </div>
+                <div class="card-org">Project Lead, BIGAI</div>
+                <div class="card-desc">
+                    <ul>
+                        <li>Leading the development of a distributed heterogeneous multi-robot system for intelligent airport security inspection, with the goal of improving operational efficiency and reducing safety risks in complex airport environments.</li>
+                        <li>Directing system design and integration, including multi-robot coordination, dynamic task allocation, and multimodal human&ndash;robot interaction, toward deployment-oriented evaluation in real-world settings.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Intention-Aligned Imitation Learning for Heterogeneous Robots</span>
+                    <span class="card-meta">2021 &ndash; 2024</span>
+                </div>
+                <div class="card-org">Lead Researcher, Tsinghua University</div>
+                <div class="card-desc">
+                    <ul>
+                        <li>Developed a cross-robot imitation learning framework that transfers behaviors through shared high-level intention representations rather than low-level action matching.</li>
+                        <li>Led framework design and large-scale experimental validation across <strong>seven robot platforms</strong> and <strong>30 collaborative scenarios</strong>, resulting in a publication in <strong>Science Robotics</strong>.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">CENTAURO: Mobile Manipulation Robot for Disaster Response</span>
+                    <span class="card-meta">2018 &ndash; 2020</span>
+                </div>
+                <div class="card-org">Research Contributor, KTH</div>
+                <div class="card-desc">
+                    <ul>
+                        <li>Developed learning-based terrain classification and adaptive locomotion methods for a wheel-legged disaster-response robot operating on complex and unstructured surfaces.</li>
+                        <li>Contributed to system integration and real-world evaluation of learning-based mobility modules within the CENTAURO platform.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Research Funding</h3>
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">China Postdoctoral Science Foundation, General Program</span>
+                    <span class="card-meta">2022 &ndash; 2024</span>
+                </div>
+                <div class="card-org">Principal Investigator</div>
+                <div class="card-desc">Offline Robot Policy Learning from Multi-Source Demonstration Datasets. Grant No. 2022M721838.</div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- Experience -->
+        <section id="experience">
+            <h2>Experience & Education</h2>
+            
+            <h3>Academic Appointments</h3>
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Researcher</span>
+                    <span class="card-meta">2024 &ndash; Present</span>
+                </div>
+                <div class="card-org">Robotics Lab, Beijing Institute for General Artificial Intelligence (BIGAI), Beijing, China</div>
+                <div class="card-desc">Leading research on robotic manipulation and heterogeneous multi-robot systems, while directing deployment-oriented projects, supervising students, and advancing real-world robotic autonomy.</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Postdoctoral Researcher</span>
+                    <span class="card-meta">2021 &ndash; 2024</span>
+                </div>
+                <div class="card-org">Institute for Interdisciplinary Information Sciences (IIIS), Tsinghua University, Beijing, China</div>
+                <div class="card-desc">Conducted research on cross-robot imitation learning, offline reinforcement learning, and policy learning from heterogeneous data, with a focus on transferable robot autonomy across embodiments.</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Visiting Scholar</span>
+                    <span class="card-meta">2021</span>
+                </div>
+                <div class="card-org">Shenzhen Institute of Artificial Intelligence and Robotics for Society (AIRS), Shenzhen, China</div>
+                <div class="card-desc">Conducted research on heterogeneous multi-robot coordination and learning-based autonomy for cooperative robotic systems.</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Researcher</span>
+                    <span class="card-meta">2021</span>
+                </div>
+                <div class="card-org">Game AI Research Center, Tencent IEG, Shenzhen, China</div>
+                <div class="card-desc">Developed distributed reinforcement learning systems and large-scale training pipelines for game AI.</div>
+            </div>
+
+            <h3>Education</h3>
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Ph.D. in Robotics, Perception and Learning</span>
+                    <span class="card-meta">2015 &ndash; 2020</span>
+                </div>
+                <div class="card-org">KTH Royal Institute of Technology, Stockholm, Sweden</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">M.S. in Electrical and Computer Engineering</span>
+                    <span class="card-meta">2012 &ndash; 2014</span>
+                </div>
+                <div class="card-org">Sungkyunkwan University (SKKU), Seoul, South Korea</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">B.S. in Computer Science</span>
+                    <span class="card-meta">2008 &ndash; 2012</span>
+                </div>
+                <div class="card-org">Sungkyunkwan University (SKKU), Seoul, South Korea</div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- Teaching -->
+        <section id="teaching">
+            <h2>Teaching & Mentoring</h2>
+            
+            <h3>Teaching Experience</h3>
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Course Mentor, Artificial Intelligence System Practice</span>
+                    <span class="card-meta">2024 &ndash; Present</span>
+                </div>
+                <div class="card-org">Beijing Institute for General Artificial Intelligence (BIGAI)</div>
+                <div class="card-desc">Designed and delivered project-based teaching in AI and robotics systems, including curriculum planning, student mentoring, project supervision, and final evaluation.</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Teaching Assistant, Machine Learning</span>
+                    <span class="card-meta">2018 &ndash; 2019</span>
+                </div>
+                <div class="card-org">KTH Royal Institute of Technology, Stockholm, Sweden</div>
+                <div class="card-desc">Supported tutorials, assignment grading, and student consultation for undergraduate and graduate students.</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Teaching Assistant, Reinforcement Learning</span>
+                    <span class="card-meta">2017</span>
+                </div>
+                <div class="card-org">KTH Royal Institute of Technology, Stockholm, Sweden</div>
+                <div class="card-desc">Assisted with course instruction, assignment grading, and student consultation.</div>
+            </div>
+
+            <h3>Teaching Interests</h3>
+            <p style="margin-bottom: 24px;">
+                <span class="tag">Introduction to Robotics</span>
+                <span class="tag">Embodied AI</span>
+                <span class="tag">Robot Learning</span>
+                <span class="tag">Reinforcement Learning</span>
+                <span class="tag">Multi-Robot Systems</span>
+            </p>
+
+            <h3>Student Supervision</h3>
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Guannan Liu</span>
+                    <span class="card-meta">2026 &ndash; Present</span>
+                </div>
+                <div class="card-org">Ph.D. student, BIGAI</div>
+                <div class="card-desc">Supervisor. Guidance on offline reinforcement learning, reward shaping, experimental design, and manuscript preparation.</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Haixu Zhang</span>
+                    <span class="card-meta">2025 &ndash; Present</span>
+                </div>
+                <div class="card-org">Master&rsquo;s student, AIRS</div>
+                <div class="card-desc">Co-supervisor. Guidance on robotic manipulation, hierarchical decision-making, and experimental evaluation.</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Research Interns</span>
+                    <span class="card-meta">2023 &ndash; Present</span>
+                </div>
+                <div class="card-org">BIGAI / AIRS / Collaborators</div>
+                <div class="card-desc">Mentored short-term research projects in robot learning, robotic manipulation, and multi-robot systems, including literature review, implementation, experimental design, and evaluation.</div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- Service & Collaborations -->
+        <section id="service">
+            <h2>Service & Collaborations</h2>
+            
+            <h3>Selected Academic Collaborations</h3>
+            <div class="card">
+                <div class="card-title">Samsung Research Beijing</div>
+                <div class="card-desc">Academic collaboration on robotic manipulation and deployment-oriented robot learning, including joint student supervision, technical discussions, and joint research publications.</div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Shenzhen Institute of AI and Robotics for Society (AIRS)</div>
+                <div class="card-desc">Academic collaboration on heterogeneous multi-robot systems and related robotic applications, including joint student supervision, technical collaboration, and joint publications.</div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Microsoft Data Knowledge Intelligence (DKI)</div>
+                <div class="card-desc">Academic collaboration on LLM-driven robot learning and data-driven AI systems, including technical discussions and joint publications.</div>
+            </div>
+
+            <h3>Professional Service</h3>
+            <p><strong>Journal Reviewer:</strong> IEEE Transactions on Robotics (T-RO), IEEE Robotics and Automation Letters (RA-L)</p>
+            <p><strong>Conference Reviewer:</strong> ICRA, IROS, NeurIPS, ICLR</p>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- Contact -->
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>I welcome collaboration inquiries from researchers and students interested in embodied AI, robot learning, and multi-robot systems. Please feel free to reach out.</p>
+            <div class="hero-contact" style="margin-top: 20px;">
+                <a href="mailto:pcchenxi@gmail.com">pcchenxi@gmail.com</a>
+                <span class="divider">|</span>
+                <a href="https://scholar.google.com/citations?user=YOUR_ID" target="_blank">Google Scholar</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2026 Xi Chen. All rights reserved.
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        mobileBtn.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '56px';
+                navLinks.style.left = '0';
+                navLinks.style.right = '0';
+                navLinks.style.background = 'rgba(250, 250, 249, 0.98)';
+                navLinks.style.backdropFilter = 'blur(12px)';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.padding = '16px 24px';
+                navLinks.style.borderBottom = '1px solid var(--border)';
+                navLinks.style.gap = '16px';
+            }
+        });
+    </script>
+</body>
+</html>
